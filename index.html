@@ -1,1 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="The Light Between — original artwork by Brittany Yach, a DFW artist creating emotion-led work inspired by light, shadow, contrast, and the space between."
+  />
+  <title>The Light Between | Art by Brittany Yach</title>
 
+  <style>
+    :root {
+      --ink: #171615;
+      --ink-soft: #262321;
+      --cream: #f4efe7;
+      --cream-deep: #e9e0d3;
+      --paper: #fbf8f3;
+      --wine: #7c2537;
+      --red: #a63b47;
+      --teal: #176b69;
+      --teal-deep: #104e4d;
+      --gold: #c49a63;
+      --muted: #7b746d;
+      --line: rgba(23, 22, 21, .14);
+      --max: 1260px;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(124, 37, 55, .08), transparent 24%),
+        radial-gradient(circle at 88% 20%, rgba(23, 107, 105, .08), transparent 26%),
+        var(--cream);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(calc(100% - 42px), var(--max));
+      margin-inline: auto;
+    }
+
+    /* NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(244, 239, 231, .86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: .25s ease;
+    }
+
+    header.scrolled {
+      border-color: var(--line);
+      box-shadow: 0 10px 30px rgba(23,22,21,.04);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      letter-spacing: -.02em;
+    }
+
+    .brand-sub {
+      margin-top: 4px;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: .78rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #4f4944;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -6px;
+      height: 1px;
+      background: var(--wine);
+      transition: .24s ease;
+    }
+
+    .nav-links a:hover::after { right: 0; }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      align-items: center;
+      gap: clamp(44px, 7vw, 100px);
+      padding: 76px 0 92px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--wine);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.03;
+    }
+
+    h1 {
+      max-width: 8.8ch;
+      font-size: clamp(4rem, 8.3vw, 8rem);
+      letter-spacing: -.058em;
+    }
+
+    .hero-copy p {
+      max-width: 590px;
+      margin: 30px 0 36px;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+    }
+
+    .hero-copy em {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.08em;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 48px;
+      padding: 0 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      font-size: .78rem;
+      transition: .22s ease;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(23,22,21,.09);
+    }
+
+    .hero-art {
+      position: relative;
+      padding: 22px 28px 48px 52px;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 18% 16%;
+      background:
+        linear-gradient(145deg, rgba(124,37,55,.94), rgba(33,23,28,.95) 45%, rgba(16,78,77,.88));
+      border-radius: 51% 49% 42% 58% / 46% 40% 60% 54%;
+      transform: rotate(-3deg);
+      z-index: -2;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -12px;
+      top: 8px;
+      border: 1px solid rgba(196,154,99,.55);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 34px 75px rgba(18,15,15,.24);
+      filter: saturate(.9) contrast(1.03);
+    }
+
+    .floating-note {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: min(290px, 70%);
+      padding: 20px 22px;
+      background: rgba(251,248,243,.96);
+      box-shadow: 0 20px 45px rgba(23,22,21,.12);
+    }
+
+    .floating-note strong {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.35rem;
+    }
+
+    .floating-note span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    /* MANIFESTO STRIP */
+    .manifesto {
+      padding: 0;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .manifesto .shell {
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding-block: 48px;
+    }
+
+    .manifesto p {
+      max-width: 1000px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.7vw, 3.8rem);
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .manifesto .accent { color: #d8b7a9; }
+
+    /* SECTIONS */
+    section { padding: 112px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(3rem, 5.8vw, 6rem);
+      letter-spacing: -.05em;
+    }
+
+    .section-head p {
+      max-width: 440px;
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr .88fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .gallery-item {
+      min-width: 0;
+    }
+
+    .art-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 365px;
+      background:
+        linear-gradient(145deg, rgba(23,107,105,.20), rgba(124,37,55,.17)),
+        var(--cream-deep);
+    }
+
+    .art-card.large { min-height: 610px; }
+
+    .art-card.second {
+      background:
+        linear-gradient(145deg, rgba(96, 40, 52, .22), rgba(219, 189, 159, .45)),
+        var(--cream-deep);
+    }
+
+    .art-card.third {
+      background:
+        linear-gradient(145deg, rgba(15, 87, 83, .25), rgba(235, 221, 201, .4)),
+        var(--cream-deep);
+    }
+
+    .art-placeholder {
+      min-height: inherit;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      text-align: center;
+      color: rgba(23,22,21,.55);
+      font-family: var(--serif);
+      font-size: 1.25rem;
+    }
+
+    .art-placeholder small {
+      display: block;
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .caption {
+      padding-top: 14px;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+    }
+
+    .caption span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* ABOUT */
+    .about {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 84% 20%, rgba(23,107,105,.26), transparent 27%),
+        radial-gradient(circle at 12% 88%, rgba(124,37,55,.28), transparent 32%),
+        var(--ink-soft);
+      color: var(--paper);
+    }
+
+    .about::after {
+      content: "";
+      position: absolute;
+      right: -190px;
+      bottom: -220px;
+      width: 560px;
+      height: 560px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 62px rgba(255,255,255,.022),
+        0 0 0 124px rgba(255,255,255,.015);
+    }
+
+    .about-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: clamp(50px, 9vw, 130px);
+      align-items: start;
+    }
+
+    .about .eyebrow { color: rgba(255,255,255,.6); }
+
+    .about h2 {
+      font-size: clamp(3.2rem, 6vw, 6.7rem);
+      letter-spacing: -.055em;
+    }
+
+    .about-copy {
+      max-width: 700px;
+      padding-top: 26px;
+    }
+
+    .about-copy p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,.73);
+      font-size: 1.08rem;
+    }
+
+    .about-copy .button {
+      margin-top: 12px;
+      color: var(--paper);
+      border-color: rgba(255,255,255,.72);
+    }
+
+    /* THEMES */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .theme-card {
+      min-height: 300px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.24);
+    }
+
+    .theme-card:nth-child(1) {
+      background:
+        linear-gradient(180deg, rgba(124,37,55,.10), rgba(255,255,255,.20)),
+        rgba(255,255,255,.22);
+    }
+
+    .theme-card:nth-child(2) {
+      background:
+        linear-gradient(180deg, rgba(23,107,105,.11), rgba(255,255,255,.20)),
+        rgba(255,255,255,.22);
+    }
+
+    .theme-card:nth-child(3) {
+      background:
+        linear-gradient(180deg, rgba(196,154,99,.12), rgba(255,255,255,.20)),
+        rgba(255,255,255,.22);
+    }
+
+    .theme-card .number {
+      margin-bottom: auto;
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .14em;
+    }
+
+    .theme-card h3 {
+      font-size: 2rem;
+      margin-bottom: 9px;
+    }
+
+    .theme-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* STUDIO / CONTACT */
+    .studio-note {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .studio-note h2 {
+      font-size: clamp(3rem, 5.5vw, 5.8rem);
+      letter-spacing: -.05em;
+    }
+
+    .studio-note p {
+      max-width: 560px;
+      color: var(--muted);
+    }
+
+    .quote {
+      border-left: 1px solid var(--wine);
+      padding-left: 28px;
+      color: #4e4742;
+      font-family: var(--serif);
+      font-size: clamp(1.55rem, 2.9vw, 2.8rem);
+      line-height: 1.24;
+    }
+
+    .contact { padding-top: 40px; }
+
+    .contact-panel {
+      padding: clamp(44px, 7vw, 92px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 55px;
+      background:
+        linear-gradient(135deg, rgba(124,37,55,.11), rgba(23,107,105,.10)),
+        var(--cream-deep);
+    }
+
+    .contact-panel h2 {
+      max-width: 8ch;
+      font-size: clamp(2.9rem, 5.4vw, 5.4rem);
+      letter-spacing: -.05em;
+    }
+
+    .contact-panel p {
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    footer { padding: 44px 0 54px; }
+
+    .footer-row {
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 930px) {
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-art {
+        width: min(100%, 680px);
+        margin-inline: auto;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-grid > .gallery-item:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .about-grid,
+      .studio-note {
+        grid-template-columns: 1fr;
+      }
+
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      section { padding: 78px 0; }
+
+      .brand-sub { display: none; }
+
+      .hero {
+        padding-top: 48px;
+        gap: 50px;
+      }
+
+      .hero-art {
+        padding: 12px 8px 34px 25px;
+      }
+
+      .hero-art::before {
+        inset: 0 0 20% 9%;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 16px;
+      }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid > .gallery-item:first-child {
+        grid-column: auto;
+      }
+
+      .art-card,
+      .art-card.large {
+        min-height: 440px;
+      }
+
+      .manifesto .shell {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="siteHeader">
+    <div class="shell nav">
+      <a class="brand-wrap" href="#top" aria-label="The Light Between home">
+        <span class="brand">The Light Between</span>
+        <span class="brand-sub">Art by Brittany Yach</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#themes">Process</a>
+        <a href="#contact">Inquiries</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Brittany Yach · DFW Artist</div>
+        <h1>The light between.</h1>
+
+        <p>
+          Original art from the space between <em>light and shadow</em> —
+          emotion-led, chiaroscuro-inspired, and always evolving.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#work">Explore the work</a>
+          <a class="button" href="#contact">Commission inquiries</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <img
+          class="hero-image"
+          src="Art by Brittany Yach.jpg"
+          alt="Brittany Yach, artist and creator of The Light Between"
+        />
+
+        <div class="floating-note">
+          <strong>Brittany Yach</strong>
+          <span>Painter · mixed media · studies · works in progress</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="manifesto" aria-label="Artist statement">
+      <div class="shell">
+        <p>
+          Art doesn’t have to choose between beauty and darkness.
+          Sometimes the most interesting thing is <span class="accent">the space in between.</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Selected work</div>
+            <h2>Recent pieces</h2>
+          </div>
+
+          <p>
+            Brittany’s work moves freely between painting, drawing, watercolor,
+            figurative studies, still life, and darker experiments in color and form.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="art-card large">
+              <div class="art-placeholder">
+                Featured artwork
+                <small>Replace with one of Brittany’s strongest finished pieces</small>
+              </div>
+            </div>
+            <div class="caption">
+              Featured Original
+              <span>Original work · medium / size</span>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="art-card second">
+              <div class="art-placeholder">
+                Figurative / Chiaroscuro
+                <small>Replace with artwork image</small>
+              </div>
+            </div>
+            <div class="caption">
+              Figure Study
+              <span>Original work</span>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="art-card third">
+              <div class="art-placeholder">
+                Color / Shadow Study
+                <small>Replace with artwork image</small>
+              </div>
+            </div>
+            <div class="caption">
+              Study in Contrast
+              <span>Original work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="shell about-grid">
+        <div>
+          <div class="eyebrow">About Brittany</div>
+          <h2>Emotion first. Rules second.</h2>
+        </div>
+
+        <div class="about-copy">
+          <p>
+            Brittany Yach is a DFW artist whose work is drawn to contrast:
+            softness and intensity, beauty and unease, light and shadow.
+            Chiaroscuro is a recurring influence, but her work is deliberately
+            hard to pin to a single subject or medium.
+          </p>
+
+          <p>
+            Her studio practice is exploratory and instinctive. Finished paintings
+            sit beside sketches, watercolor studies, figures, flowers, faces,
+            and experiments that are allowed to become something unexpected.
+          </p>
+
+          <p>
+            The result is work that feels personal rather than overly polished —
+            expressive, curious, and continually changing.
+          </p>
+
+          <a class="button" href="https://www.instagram.com/the_light_between.art/" target="_blank" rel="noopener">
+            Follow the studio on Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="themes">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Inside the work</div>
+            <h2>What keeps showing up</h2>
+          </div>
+
+          <p>
+            Not a rigid “style guide” — more like recurring ideas Brittany keeps
+            returning to as the work evolves.
+          </p>
+        </div>
+
+        <div class="themes-grid">
+          <article class="theme-card">
+            <div class="number">01</div>
+            <h3>Light & shadow</h3>
+            <p>
+              Contrast is part of the subject. Darkness isn’t just background;
+              it shapes what gets revealed.
+            </p>
+          </article>
+
+          <article class="theme-card">
+            <div class="number">02</div>
+            <h3>Emotion over perfection</h3>
+            <p>
+              Brush marks, unfinished edges, and expressive decisions are part
+              of the work rather than things to hide.
+            </p>
+          </article>
+
+          <article class="theme-card">
+            <div class="number">03</div>
+            <h3>Always evolving</h3>
+            <p>
+              Painting, drawing, watercolor, studies, figures, still life —
+              the medium follows the idea instead of the other way around.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell studio-note">
+        <div>
+          <div class="eyebrow">The studio</div>
+          <h2>Process is part of the art.</h2>
+          <p>
+            The feed doesn’t just show finished work — it shows the piece on the
+            easel, the sketch before the painting, experiments that work, and
+            experiments that don’t. That evolving process is part of The Light Between.
+          </p>
+        </div>
+
+        <div class="quote">
+          “The work can be dark without being bleak, beautiful without being tidy,
+          and finished without feeling completely resolved.”
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell">
+        <div class="contact-panel">
+          <div>
+            <div class="eyebrow">Available work & commissions</div>
+            <h2>Bring something original home.</h2>
+          </div>
+
+          <div>
+            <p>
+              For available pieces, commissions, collaborations, or questions about
+              a work you saw online, contact Brittany directly or send a message through Instagram.
+            </p>
+
+            <div class="actions">
+              <a class="button primary" href="mailto:YOUR-EMAIL-HERE">Email Brittany</a>
+              <a class="button" href="https://www.instagram.com/the_light_between.art/" target="_blank" rel="noopener">
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="footer-row">
+            <span>© <span id="year"></span> The Light Between · Art by Brittany Yach</span>
+            <span>DFW, Texas</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const header = document.getElementById("siteHeader");
+    const year = document.getElementById("year");
+
+    year.textContent = new Date().getFullYear();
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>
